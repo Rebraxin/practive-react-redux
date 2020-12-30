@@ -9,9 +9,7 @@ const reducer = combineReducers({
   peopleList: peopleListReducer,
 })
 
-const initialState = {
-  test: "adrien"
-}
+const initialState = {}
 
 const middleware = [thunk]
 

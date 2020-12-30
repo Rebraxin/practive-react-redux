@@ -1,28 +1,13 @@
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import "./App.css";
-
-import { listPeoples } from './actions/peopleAction'
+import React from 'react'
+import SwapiScreen from './screens/SwapiScreen'
+import './App.css'
 
 const App = () => {
-  const dispatch = useDispatch()
-
-  const peopleList = useSelector((state) => state.peopleList)
-  const { loading, error, peoples } = peopleList
-
-  console.log(peoples)
-
-  useEffect(() => {
-    dispatch(listPeoples())
-  }, [dispatch])
   return (
-    <div className='App'>
-    {loading && <p>Loading...</p>}
-    {error && <p>{error}</p>}
-      <h1>Working</h1>
-      {/* <p>{peoples.count}</p> */}
+    <div className="App">
+      <SwapiScreen />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
