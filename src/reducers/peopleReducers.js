@@ -1,12 +1,12 @@
-import { PEOPLE_LIST_FAIL, PEOPLE_LIST_REQUEST, PEOPLE_LIST_SUCCESS } from "../actions/peopleAction"
+import { PEOPLE_DETAIL_FAIL, PEOPLE_DETAIL_REQUEST, PEOPLE_DETAIL_SUCCESS } from "../actions/peopleAction"
 
-export const peopleListReducer = (state = { peoples: [] }, action) => {
+export const peopleDetailReducer = (state = { details: [] }, action) => {
   switch (action.type) {
-    case PEOPLE_LIST_REQUEST:
-      return { loading: true, peoples: [] }
-    case PEOPLE_LIST_SUCCESS:
-      return { loading: false, peoples: action.payload }
-    case PEOPLE_LIST_FAIL:
+    case PEOPLE_DETAIL_REQUEST:
+      return { loading: true, details: [] }
+    case PEOPLE_DETAIL_SUCCESS:
+      return { loading: false, details: action.payload }
+    case PEOPLE_DETAIL_FAIL:
       return { loading: false, error: action.payload }
     default:
       return state

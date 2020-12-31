@@ -1,31 +1,46 @@
+import {
+  Card,
+  CardActionArea,
+  CardContent,
+  Typography,
+} from '@material-ui/core'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { listPeoples } from '../../actions/peopleAction'
+import { detailPeople } from '../../actions/peopleAction'
+import Loading from '../../component/Loading'
 
 const SwapiScreen = () => {
   const dispatch = useDispatch()
 
-  const peopleList = useSelector((state) => state.peopleList)
-  const { loading, error, peoples } = peopleList
+  const peopleDetails = useSelector((state) => state.peopleDetails)
+  const { loading, error, details } = peopleDetails
 
   useEffect(() => {
-    dispatch(listPeoples())
+    dispatch(detailPeople())
   }, [dispatch])
 
   return (
     <div>
-      {loading && (<p>loading...</p>)}
-      {error && (<p>{error}</p>)}
-      {peoples.films && (
-        <>
-          <h3>Nom : {peoples.name}</h3>
-          <h3>Poid : {peoples.height}</h3>
-          <h3>Yeux couleur : {peoples.eye_color}</h3>
-          <h3>Naissance : {peoples.birth_year}</h3>
-          {peoples.films.map((f, i) => (
-            <p key={i}>{f}</p>
-          ))}
-        </>
+      {loading && <Loading />}
+      {error && <p>{error}</p>}
+      {details.films && (
+        <Card>
+          <CardActionArea>
+            <CardContent>
+              <Typography variant="h4">Nom : {details.name}</Typography>
+              <Typography variant="h4">Poid : {details.height}</Typography>
+              <Typography variant="h4">
+                Yeux couleur : {details.eye_color}
+              </Typography>
+              <Typography variant="h4">
+                Naissance : {details.birth_year}
+              </Typography>
+              {details.films.map((f, i) => (
+                <Typography key={i}>{f}</Typography>
+              ))}
+            </CardContent>
+          </CardActionArea>
+        </Card>
       )}
     </div>
   )
